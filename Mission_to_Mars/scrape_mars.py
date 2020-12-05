@@ -74,8 +74,8 @@ def scrape():
         title_h2 = soup.find('h2', class_='title')
         title = title_h2.text.strip()
         
-        img_div = soup.find('div', class_='downloads')
-        img_url = img_div.find('a', text='Original')['href']
+        img_div = soup.find('img', class_='wide-image')
+        img_url = base_url + img_div['src']
 
         img_dict = {'title':title, 'img_url':img_url}
         hemisphere_image_urls.append(img_dict)
