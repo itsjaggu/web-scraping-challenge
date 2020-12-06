@@ -18,12 +18,13 @@
     </div>
 
     <!-- Displaying Mars Data -->
-    <div class="row" id="craiglist-listings">
+    <div class="row" id="mars-mission">
       <div class="col-md-12">
         <h3>Latest Mars News</h3>
-        <h5 class="heading">{{mars_data.news.title}}</h5>
-        <small>{{mars_data.news.detail}}</small>
+        <h5 class="heading">{% if mars_data %} {{mars_data.news.title}} {% else %} Click on Scrape New Data {% endif %}</h5>
+        <small>{% if mars_data %} {{mars_data.news.detail}} {% else %} &nbsp; {% endif %}</small>
       </div>
+      {% if mars_data %}
       <div class="col-md-8">
         <h3>Featured Mars Image</h3>
         <img src={{mars_data.featured_url}} alt="Featured Mars Image" width="100%">
@@ -51,7 +52,7 @@
         <img src={{mars_data.hemisphere_data[3].img_url}} alt={{mars_data.hemisphere_data[3].title}} width="100%">
         <h4>{{mars_data.hemisphere_data[3].title}}</h4>
       </div>
-
+      {% else %} &nbsp; {% endif %}
     </div>
 
   </div>
