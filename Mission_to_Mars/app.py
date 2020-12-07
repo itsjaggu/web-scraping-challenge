@@ -10,12 +10,14 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
+    # This function loads the data from Mongo DB and pass it to HTML Template
     mars_coll = mongo.db.MarsCollection.find_one()
     return render_template("index.html", mars_data=mars_coll)
 
 
 @app.route("/scrape")
 def scraper():
+    # This function is called to scrape the data from website, done in scrape_mars.py script
     mars_coll = mongo.db.MarsCollection
     mars_data = scrape_mars.scrape()
     mars_coll.update({}, mars_data, upsert=True)
