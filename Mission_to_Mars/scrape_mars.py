@@ -18,6 +18,8 @@ def scrape():
 
     html = browser.html
     soup = bs(html, 'html.parser')
+    # Waiting 2 Sec for page to load as it was throwing Nonetype error in execution
+    time.sleep(2)
 
     title_div = soup.find('li', class_='slide').find('div', class_='content_title')
     news_title = title_div.text.strip()
